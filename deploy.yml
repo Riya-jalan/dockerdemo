@@ -1,0 +1,18 @@
+- name: Deploy React App to Kubernetes
+  hosts: local
+  tasks:
+
+  - name: Apply Deployment
+    command: kubectl apply -f deployment.yaml
+
+  - name: Apply Service
+    command: kubectl apply -f service.yaml
+
+  - name: Wait and check pods
+    command: kubectl get pods
+
+  - name: Scale application
+    command: kubectl scale deployment react-app --replicas=3
+
+  - name: Show services
+    command: kubectl get svc
